@@ -1,2 +1,2 @@
 # Sparse NILM
-The super-state hidden Markov model disaggregator I developed for my PhD thesis. This project contains the source code for my PhD thesis experimentation. With the exception of uDisagg which has its own repo.
+The super-state hidden Markov model disaggregator that uses a sparse Viterbi algorithm for decoding. This project contains the source code that was use for my [IEEE Transactions on Smart Grid](http://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5165411) journal paper.
