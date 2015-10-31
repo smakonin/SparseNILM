@@ -11,6 +11,7 @@ If you use my code in your research please cite this paper. Current citation det
 - **Journal:** IEEE Transactions on Smart Grid
 - **Vol/No:** *in press*
 - **Accepted:** October 2015
+- **DOI:** 10.1109/TSG.2015.2494592
 
 
 **NOTE:** This code it a rewritten and modified version of the code used in my PhD thesis.
