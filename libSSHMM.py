@@ -280,10 +280,10 @@ class CompressedMatrix:
             self.vectors = [None] * self.cols
 
     def __getitem__(self, key):
-        if not (isinstance(key, (int, numpy.int64)) or len(key) == 2):
+        if not (isinstance(key, (int, numpy.int32, numpy.int64)) or len(key) == 2):
             raise RuntimeError('ERROR: matrix key is either 1 or 2, e.g. m[row/col] or x[row, col]')
 
-        if isinstance(key, (int, numpy.int64)):
+        if isinstance(key, (int, numpy.int32, numpy.int64)):
             row = None
             col = key
             value = []

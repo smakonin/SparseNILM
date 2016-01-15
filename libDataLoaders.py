@@ -82,7 +82,7 @@ def dataset_loader(filename, ids, precision, denoised=False, verbose=True):
     elif 'REDD' in filename:
         df = REDD_lo(filename, ids, precision, denoised, verbose)
     else:
-        print("EORROR: Do not know how to load dataset!")
+        print("ERROR: Do not know how to load dataset!")
         exit(1)
         
     return df
