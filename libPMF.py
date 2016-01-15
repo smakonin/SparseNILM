@@ -7,7 +7,6 @@ class EmpiricalPMF:
     """A empirical probability mass function (PMF)."""
 
     label = ''         # Textually label your PMF.
-    maxval = 0         # The maximum x-axis value.
     maxobs = 0         # The maximum obs value.
     numobs = 0         # The number of obs used for creation.
     histogram = []     # PMF observations counts.
@@ -21,20 +20,19 @@ class EmpiricalPMF:
 
     def __init__(self, label, maxobs, priors, verbose=True):
         self.label = label
-        self.maxval = max(priors) + 1
         self.maxobs = int(maxobs)
         self.numobs = len(priors)
-        self.histogram = [0 for i in range(self.maxobs)]
-        self.norm_hist = [0 for i in range(self.maxobs)]
+        self.histogram = [0] * self.maxobs
+        self.norm_hist = [0] * self.maxobs
         self.bin_count = 0
         
         for val in priors:
             self.histogram[val] += 1
 
-        for i in range(self.maxval):
+        for i in range(self.maxobs):
             self.norm_hist[i] = self.histogram[i] / self.numobs
 
-        if verbose: print('\tPMF for ' + label + ':', self.histogram[:self.maxval])
+        if verbose: print('\tPMF for ' + label + ':', self.histogram[:self.maxobs])
 
     def quantize(self, maxbins, epsilon, verbose=True):
         """Quantize the PMF histogram into bins."""
@@ -50,11 +48,11 @@ class EmpiricalPMF:
             bins = 1
             bin = 1
 
-            self.quantization = [0 for i in range(self.maxval)]
+            self.quantization = [0] * self.maxobs
             self.bin_peaks = [0]
             switch = '-'
 
-            for i in range(1, self.maxval - 1):
+            for i in range(1, self.maxobs - 1):
                 left = compare(self.histogram[i], self.histogram[i - 1])
                 right = compare(self.histogram[i + 1], self.histogram[i])
                 if left > 0 and right < 0 and switch == '-' and self.norm_hist[i] > e:
@@ -77,7 +75,7 @@ class EmpiricalPMF:
         self.bin_count = bins
         
         self.bins = [0 for i in range(self.bin_count)]
-        for i in range(self.maxval):
+        for i in range(self.maxobs):
             self.bins[self.quantization[i]] += self.histogram[i]
 
         self.norm_bins = [0 for i in range(self.bin_count)]
@@ -85,5 +83,5 @@ class EmpiricalPMF:
             self.norm_bins[i] = self.bins[i] / sum(self.histogram)
 
             first = self.quantization.index(i)
-            last = self.maxval - self.quantization[::-1].index(i) - 1
+            last = self.maxobs - self.quantization[::-1].index(i) - 1
             if verbose: print('\t\tS%d: %5d:%5d, peak=%5d, %7d |t|' % (i, first, last, self.bin_peaks[i], self.bins[i]))
