@@ -113,7 +113,7 @@ for (fold, priors, testing) in folds:
         fscore = acc.fs_fscore()
         estacc = acc.estacc()
         scp = sum([i != j for (i, j) in list(zip(hidden[i - 1], hidden[i]))])
-        print('Obs %5d%s | Δ %4d%s | Noise %3d%s | SCP %2d | Unseen? %-3s | FS-fscore %.4f | Est.Acc. %.4f | Disagg Time %6.3f ms/sample' % (y1, measure, y1 - y0, measure, y_noise, measure, scp, unseen, fscore, estacc, elapsed * 1000))
+        print('Obs %5d%s | Δ %4d%s | Noise %3d%s | SCP %2d | Unseen? %-3s | FS-fscore %.4f | Est.Acc. %.4f | Disagg Time %7.3f ms/sample' % (y1, measure, y1 - y0, measure, y_noise, measure, scp, unseen, fscore, estacc, elapsed * 1000))
         sleep(1)
         
     test_times.append((time() - tm_start) / 60)
