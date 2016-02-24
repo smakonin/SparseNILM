@@ -97,6 +97,9 @@ class Accuracy:
     def __init__(self, items, folds):
         self.items = items
         self.folds = folds
+        self.reset()
+        
+    def reset(self):
         self.trials = [0 for i in range(self.folds)]
 
         self.count_inacc = [[0.0 for s in range(self.folds)] for i in range(self.items)]
@@ -130,7 +133,7 @@ class Accuracy:
             else:
                 print("EORROR: impossible FS f-score case!")
                 exit(1)
-            
+
     def measurement_result(self, fold, est, truth):
         """Record the classification results of a test."""
         
