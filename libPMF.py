@@ -31,8 +31,15 @@ class EmpiricalPMF:
 
         for i in range(self.maxobs):
             self.norm_hist[i] = self.histogram[i] / self.numobs
-
-        if verbose: print('\tPMF for ' + label + ':', self.histogram[:self.maxobs])
+            
+        #for printout only
+        if verbose:
+            maxval = 0
+            for n in range(self.maxobs - 1, 0, -1):
+                if self.histogram[n] > 1:
+                    maxval = n + 1
+                    break
+            print('\tPMF for ' + label + ':', self.histogram[:maxval])
 
     def quantize(self, maxbins, epsilon, verbose=True):
         """Quantize the PMF histogram into bins."""
