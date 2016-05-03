@@ -27,11 +27,10 @@ I recommend flashing the SD card with Raspbian JESSIE LITE. Here are the steps t
 	* `sudo apt remove python2.7`
 	* `sudo apt-get autoremove`
 	* `sudo apt install python3 python3-rpi.gpio python3-serial python3-pip`
-	* `sudo pip3 install pyserial`
 5. Finally, we need to setup git to download SparseNILM from GitHub:
 	* `sudo apt install git`
 	* `git config --global user.name “<insert your name here>“`
-	* `- git config --global user.email your_email@example.com`
+	* `git config --global user.email your_email@example.com`
 	* `git clone git@github.com:smakonin/SparseNILM.git`
 6. Optionally if you have a GitHub account run:
 	* `ssh-keygen -t rsa -b 4096 -C "your_email@example.com”`
