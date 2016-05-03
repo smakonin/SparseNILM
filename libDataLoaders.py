@@ -135,6 +135,65 @@ def TEALD_power(filename, ids, precision, denoised=False, verbose=True):
     df.loc[df[unmetered_col] < 0] = 0
 
     return df   
+
+def TEALD_power(filename, ids, precision, denoised=False, verbose=True):
+    """Loaders for the BCH dataset."""
+    
+    timestamp_col = 'unix_ts'
+    agg_meter_col = 'mains'
+    unmetered_col = 'noise'
+    
+    if verbose: print('Loading BCH dataset file %s...' % filename)
+    df = pandas.read_csv(filename)
+    
+    if verbose: print('\tSetting timestamp column %s as index.' % timestamp_col)
+    df = df.set_index(timestamp_col)
+    
+    if verbose: print('\tRemoving loads...')
+    rm_list = []
+    for id in ids:
+        if '-' in id:
+            sub_id = id[1:]
+            df.drop(sub_id, inplace=True, axis=1)
+            rm_list.append(id)
+    for rm_id in rm_list:
+        ids.remove(rm_id)
+
+    headers = list(df.columns.values)
+    headers = headers[2:]
+    df[agg_meter_col] = df[headers].sum(axis=1)
+
+    if verbose: print('\tCombining L1 and L2 for double-pole loads...')
+    for id in ids:
+        if '+' in id:
+            sub_ids = id.split('+')
+            df[id] = 0
+            for sub_id in sub_ids:
+                df[id] += df[sub_id]
+            df.drop(sub_ids, inplace=True, axis=1)
+    
+    cols = ids[:]
+    if unmetered_col in cols:
+        cols.remove(unmetered_col)
+        if verbose: print('\tNoise will modelled as %s.' % unmetered_col)
+        
+    if verbose: print('\tKeeping only columns %s.' % str(cols))    
+    df = df[[agg_meter_col] + cols]
+    
+    if denoised:
+        if verbose: print('\tDenoising aggregate meter column %s.' % agg_meter_col)
+        df[agg_meter_col] = df[cols].sum(axis=1)
+    
+    if verbose: print('\tModfity data with precision %d then convert to int...' % precision)
+    for col in list(df):
+        df[col] = df[col] * precision
+        df[col] = df[col].astype(int)
+
+    if verbose: print('\tCalculating unmetered column %s.' % unmetered_col)
+    df[unmetered_col] = df[agg_meter_col] - df[cols].sum(axis=1)
+    df.loc[df[unmetered_col] < 0] = 0
+
+    return df 
     
 def REDD_lo(filename, ids, precision, denoised=False, verbose=True):
     """Loaders for the AMPds Release 1 dataset."""
@@ -179,6 +238,8 @@ def dataset_loader(filename, ids, precision, denoised=False, verbose=True):
         df = TEALD_power(filename, ids, precision, denoised, verbose)
     elif 'REDD' in filename:
         df = REDD_lo(filename, ids, precision, denoised, verbose)
+    elif 'BCH' in filename:
+        df = bch(filename, ids, precision, denoised, verbose)
     else:
         print("ERROR: Do not know how to load dataset!")
         exit(1)
