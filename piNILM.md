@@ -16,14 +16,13 @@ I recommend flashing the SD card with Raspbian JESSIE LITE. Here are the steps t
 	* `enable_network 0`
 	* `reconnect`
 	* `list_networks`
-	* `stat`
 	* `status`
 	* `save_config`
 	* `quit`
 3. Apply general OS updates:
 	* `sudo apt update`
 	* `sudo apt upgrade`
-	* `sudo apt install vim`
+	* `sudo apt install vim` (optional)
 4. SparseNILM uses Python 3.x, so remove Python 2.7 and install 3.x and needed modules/libraries:
 	* `sudo apt remove python2.7`
 	* `sudo apt-get autoremove`
@@ -50,7 +49,11 @@ TimeStamp,Mains,Load1,Load2,…
 1333263780,44.7,0,0.9,0.1,39.1,0,0,0,0,0.4,1.1,1.3,0.5,0.2,0,0.2,0,0.5,0.1,0.1
 ```
 
-The columns named `Load1` and `Load2` can be names of your choosing — to identify/name each load. Do not use spaces in the names. Here is an example of creating a model:
+The columns named `Load1` and `Load2` can be names of your choosing — to identify/name each load. Do not use spaces in the names. 
+
+For creating a dataset, it is recommented that you create the CSV file on your local computer and then secure copy that file to the RPi. For exmaple, `scp BCH_datafile1.csv pi@192.168.1.x:./SparseNILM/datasets/`
+
+Here is an example of how to create a model:
 
 ```
 cd ~/SparseNILM
