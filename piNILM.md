@@ -26,7 +26,7 @@ I recommend flashing the SD card with Raspbian JESSIE LITE. Here are the steps t
 4. SparseNILM uses Python 3.x, so remove Python 2.7 and install 3.x and needed modules/libraries:
 	* `sudo apt remove python2.7`
 	* `sudo apt-get autoremove`
-	* `sudo apt install python3 python3-rpi.gpio python3-serial python3-pip`
+	* `sudo apt install python3 python3-rpi.gpio python3-serial python3-pip python3-pandas`
 5. Finally, we need to setup git to download SparseNILM from GitHub:
 	* `sudo apt install git`
 	* `git config --global user.name "<insert your name here>"`
