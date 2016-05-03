@@ -1,6 +1,8 @@
 # The piNILM Project
 Copyright (c) 2016 by Stephen Makonin
 
+Last modified: May 3, 2016.
+
 This project allows SparseNILM to run on a Raspberry Pi 2B+ and 3 and disaggregate your smart meter reading using a [Rainforest EMU2](https://rainforestautomation.com/rfa-z105-2-emu-2/) in real-time.
 
 ## RPi Setup & Config
