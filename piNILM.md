@@ -31,7 +31,7 @@ I recommend flashing the SD card with Raspbian JESSIE LITE. Here are the steps t
 	* `sudo apt install git`
 	* `git config --global user.name "<insert your name here>"`
 	* `git config --global user.email your_email@example.com`
-	* `git clone git@github.com:smakonin/SparseNILM.git`
+	* `git clone https://github.com/smakonin/SparseNILM.git`
 6. Optionally if you have a GitHub account run:
 	* `ssh-keygen -t rsa -b 4096 -C "your_email@example.com”`
 	* THEN copy and paste the key into GitHub account settings
