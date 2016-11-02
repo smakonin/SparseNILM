@@ -9,7 +9,7 @@ If you use my code in your research please cite this paper. Current citation det
 - **Title:** Exploiting HMM Sparsity to Perform Online Real-Time Nonintrusive Load Monitoring (NILM)
 - **Authors:** Stephen Makonin, Fred Popowich, Ivan V. Bajic, Bob Gill, Lyn Bartram
 - **Journal:** IEEE Transactions on Smart Grid
-- **Vol/No/Pages:** vol. PP, no. 99, pp. 1-11
+- **Vol/No/Pages:** vol. 7, no. 6, pp. 2575-2585
 - **Accepted:** October 2015
 - **DOI:** 10.1109/TSG.2015.2494592
 
