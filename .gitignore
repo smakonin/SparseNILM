@@ -3,5 +3,7 @@
 __pycache__
 datasets/AMPdsR2_1min_A.csv
 datasets/REDD*.csv
+datasets/RAE*.csv
 models/*.json
+logs/*
 
